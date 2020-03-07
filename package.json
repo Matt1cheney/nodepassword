@@ -1,0 +1,23 @@
+{
+  "name": "nodepassword",
+  "version": "1.0.0",
+  "description": "generate random password",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Matt1cheney/nodepassword.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Matt1cheney/nodepassword/issues"
+  },
+  "homepage": "https://github.com/Matt1cheney/nodepassword#readme",
+  "dependencies": {
+    "inquirer": "^7.0.6"
+  }
+}
