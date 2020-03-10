@@ -1,6 +1,7 @@
 const inquirer = require("inquirer");
-
+// constant for inquirer validate. if the input is less than 8 or greater than 128 to throw error
 const validLength= async (input) => {
+  // if the input is not a Number, throw an eror
   let notValid= isNaN(input);
   if((input < 8 )|| (input > 128)){
     
@@ -18,15 +19,21 @@ const validLength= async (input) => {
 }
 // declare generator class
 class Generator {
+  //for final password printout
   _password='';
   // function that executes once when a new instance is made, fired automatically.
   constructor(choicesArr) {
-
+    // calls the calcPassword. passed in the array of selected values
    this.calcPassword(choicesArr)
+
+   this.finalProcess(choicesArr)
   }
   //getter
   get password() {
     return this._password;
+  }
+  get finalPassword(){
+    return this.finalProcess;
   }
 // function definitions
 getRandomUpper() {
@@ -44,36 +51,34 @@ getRandomLower() {
   let symbols = "!@#$%^&*()_+{}[]<>,.";
   return symbols[Math.floor(Math.random() * 20)];
 }
+//I created a funtion to fire the functions above with the choices parameter passed in
   calcPassword(choices) {
-  
+  //list of function references
     let randomFunction = {
       uppercase: this.getRandomUpper,
       lowercase: this.getRandomLower,
       numbers: this.getRandomNumber,
       symbols: this.getRandomSymbol
     };
-    console.log(choices,'choicesarr')
+    //temporary placeholder for created password
     let writePassword = "";
-    // let typesArr = [
-    //   { uppercase },
-    //   { lowercase },
-    //   { number },
-    //   { symbols }
-    // ];
-    // filter(
-    //   item => Object.values(item)[0]);
-    
+    // fire random character functions for the amount of desired length
     for (let i = 0; i < characterAmount; i++) {
+      //for the functions randomly(otherwise would traverse index in order of 0,1,2,3)
       let randomIndex= Math.floor(Math.random() * choices.length)
 
        const randomChosen =  choices[randomIndex]
-      console.log(randomChosen,'randomChoice')
       writePassword += randomFunction[randomChosen]();
     
     }
     this._password= writePassword;
-// move the table into a seperate funtion in class req. choicesArr parameter. call it in constructor after calcPassword.
-    console.table(["chosen character length",characterAmount,choices,"your password",this._password],);
+
+ 
+    }
+    finalProcess(choicesArr) {
+      this._Password
+// move the table into a seperate function in class req. choicesArr parameter. call it in constructor after calcPassword.
+    console.table(["chosen character length",characterAmount,choicesArr,"your password",this._password],);
 
   }
 }
@@ -117,7 +122,7 @@ inquirer
     number = response.choices[2];
     symbols = response.choices[3];
     characterAmount = response.characterAmount;
-    console.log('choices', response.choices)
+
     
 
     const generatedPassword = new Generator(
