@@ -6,9 +6,7 @@ const validLength= async (input) => {
   if((input < 8 )|| (input > 128)){
     
    throw "invalid entry";
-    
-    
-    
+        
   }
   else if(notValid){
     throw "please enter a number"
@@ -90,31 +88,14 @@ inquirer
       message:
       "please specify how many characters in your password.(must be between 8 and 128)",
       type:"number",
-      
       validate: validLength,
-      
-      // validate: function( value ) {
-      //   if(value >7 || value <129){
-      //     var valid = !isNaN(parseFloat(value));
-      //     return valid;
-      //   }
-      //   else{
-      //     throw " invalid";
-      //   }
-      //     },
-      //     filter: Number
-    
-      
-      
-    
-    },
-
+},
     {
       type: "checkbox",
       message: "please select what will entail in this password.",
       choices: ["uppercase", "lowercase", "numbers", "symbols"],
       name: "choices"
-    }
+}
   ])
   .then(function(response) {
     uppercase = response.choices[0];
@@ -122,8 +103,6 @@ inquirer
     number = response.choices[2];
     symbols = response.choices[3];
     characterAmount = response.characterAmount;
-
-    
 
     const generatedPassword = new Generator(
       response.choices
